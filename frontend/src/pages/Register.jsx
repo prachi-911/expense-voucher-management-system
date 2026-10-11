@@ -69,7 +69,7 @@ const Register = () => {
           Employee Account Registration
         </h1>
         <p className="mt-1 text-xs text-slate-400">
-          ABC Company • Expense Voucher Management System
+          Prachay Securities • Expense Voucher Management System
         </p>
       </div>
 

@@ -45,7 +45,21 @@ async function main() {
   const passwordHash = await bcrypt.hash('Password123!', 10);
 
   // 1. Seed Users
+  // 1. Seed Users (Supports @prachay.com, @prachaysecurities.com, and legacy @abc.com)
   const employee1 = await prisma.user.create({
+    data: {
+      name: 'John Doe',
+      email: 'employee@prachay.com',
+      password: passwordHash,
+      role: 'EMPLOYEE',
+      employeeId: 'EMP-1001',
+      department: 'Engineering',
+      signatureUrl: empSigUrl
+    }
+  });
+
+  // Alias employee for easy login
+  await prisma.user.create({
     data: {
       name: 'John Doe',
       email: 'employee@abc.com',
@@ -60,7 +74,7 @@ async function main() {
   const employee2 = await prisma.user.create({
     data: {
       name: 'Jane Smith',
-      email: 'jane@abc.com',
+      email: 'jane@prachay.com',
       password: passwordHash,
       role: 'EMPLOYEE',
       employeeId: 'EMP-1002',
@@ -70,6 +84,19 @@ async function main() {
   });
 
   const director = await prisma.user.create({
+    data: {
+      name: 'Sarah Jenkins',
+      email: 'director@prachay.com',
+      password: passwordHash,
+      role: 'DIRECTOR',
+      employeeId: 'DIR-2001',
+      department: 'Executive Leadership',
+      signatureUrl: dirSigUrl
+    }
+  });
+
+  // Alias director
+  await prisma.user.create({
     data: {
       name: 'Sarah Jenkins',
       email: 'director@abc.com',
@@ -84,6 +111,19 @@ async function main() {
   const accounts = await prisma.user.create({
     data: {
       name: 'Michael Scott',
+      email: 'accounts@prachay.com',
+      password: passwordHash,
+      role: 'ACCOUNTS',
+      employeeId: 'ACC-3001',
+      department: 'Finance & Accounts',
+      signatureUrl: null
+    }
+  });
+
+  // Alias accounts
+  await prisma.user.create({
+    data: {
+      name: 'Michael Scott',
       email: 'accounts@abc.com',
       password: passwordHash,
       role: 'ACCOUNTS',
@@ -93,11 +133,10 @@ async function main() {
     }
   });
 
-  console.log('Created Users:');
-  console.log(' - Employee 1: employee@abc.com (Password123!)');
-  console.log(' - Employee 2: jane@abc.com (Password123!)');
-  console.log(' - Director: director@abc.com (Password123!)');
-  console.log(' - Accounts: accounts@abc.com (Password123!)');
+  console.log('Created Prachay Securities Users:');
+  console.log(' - Employee: employee@prachay.com / employee@abc.com');
+  console.log(' - Director: director@prachay.com / director@abc.com');
+  console.log(' - Accounts: accounts@prachay.com / accounts@abc.com');
 
   // 2. Seed Vouchers
   // Voucher 1: DRAFT (John Doe)
@@ -128,7 +167,7 @@ async function main() {
       department: 'Engineering',
       expenseTitle: 'Flight Tickets for Tech Summit Bangalore',
       expenseCategory: 'Travel',
-      expenseDescription: 'Round-trip flight booking to represent ABC Company at TechSparks Bangalore summit.',
+      expenseDescription: 'Round-trip flight booking to represent Prachay Securities at TechSparks Bangalore summit.',
       amount: 18250.50,
       employeeName: employee1.name,
       employeeId: employee1.employeeId,

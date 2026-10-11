@@ -1,6 +1,6 @@
 # Expense Voucher Management System
 
-A production-ready, full-stack web application designed for **ABC Company** (evaluated for **Prachay Securities Private Limited**) to digitize the complete employee expense voucher lifecycle — from creation and drafting, to digital signature submission, executive Director approval/rejection, and Accounts team reimbursement processing.
+A production-ready, full-stack web application designed for **Prachay Securities Private Limited** to digitize the complete employee expense voucher lifecycle — from creation and drafting, to digital signature submission, executive Director approval/rejection, and Accounts team reimbursement processing.
 
 ---
 
@@ -239,10 +239,10 @@ The database seeder provisions initial accounts for each organizational role:
 
 | Role | Email | Password | Pre-seeded State & Access |
 |---|---|---|---|
-| **Employee (John Doe)** | `employee@abc.com` | `Password123!` | Has 1 Draft, 1 Submitted, 1 Approved voucher |
-| **Employee (Jane Smith)** | `jane@abc.com` | `Password123!` | Has 1 Submitted, 1 Approved, 1 Rejected voucher |
-| **Director (Sarah Jenkins)** | `director@abc.com` | `Password123!` | Administrative approval queue across all departments |
-| **Accounts Team (Michael Scott)** | `accounts@abc.com` | `Password123!` | Organization-wide reimbursement monitoring & receipt printing |
+| **Employee (John Doe)** | `employee@prachay.com` *(or `employee@abc.com`)* | `Password123!` | Has 1 Draft, 1 Submitted, 1 Approved voucher |
+| **Employee (Jane Smith)** | `jane@prachay.com` *(or `jane@abc.com`)* | `Password123!` | Has 1 Submitted, 1 Approved, 1 Rejected voucher |
+| **Director (Sarah Jenkins)** | `director@prachay.com` *(or `director@abc.com`)* | `Password123!` | Administrative approval queue across all departments |
+| **Accounts Team (Michael Scott)** | `accounts@prachay.com` *(or `accounts@abc.com`)* | `Password123!` | Organization-wide reimbursement monitoring & receipt printing |
 
 ---
 

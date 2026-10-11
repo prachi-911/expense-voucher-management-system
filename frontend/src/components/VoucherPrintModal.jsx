@@ -66,7 +66,7 @@ const VoucherPrintModal = ({ voucher, onClose }) => {
           <div className="border-b-2 border-slate-800 pb-5 mb-6 flex items-start justify-between">
             <div>
               <h1 className="text-2xl font-black tracking-tight text-slate-900">
-                ABC COMPANY
+                PRACHAY SECURITIES PVT. LTD.
               </h1>
               <p className="text-xs uppercase tracking-wider text-slate-500 font-semibold mt-0.5">
                 Expense Reimbursement Voucher
@@ -229,7 +229,7 @@ const VoucherPrintModal = ({ voucher, onClose }) => {
 
           {/* Footer Notice */}
           <div className="mt-8 text-center border-t border-slate-200 pt-3 text-[11px] text-slate-400">
-            This document is computer-generated from the ABC Company Expense Voucher Management System.
+            This document is computer-generated from the Prachay Securities Expense Voucher Management System.
           </div>
 
         </div>

@@ -55,7 +55,7 @@ const Login = () => {
           <Receipt size={32} />
         </div>
         <h1 className="text-3xl font-extrabold text-white tracking-tight">
-          ABC Company
+          Prachay Securities
         </h1>
         <p className="mt-1.5 text-sm text-slate-400 font-medium">
           Expense Voucher Management System
@@ -150,7 +150,7 @@ const Login = () => {
           {/* Registration link */}
           <div className="mt-6 pt-5 border-t border-slate-100 text-center">
             <p className="text-xs text-slate-500">
-              New employee joining ABC Company?{' '}
+              New employee joining Prachay Securities?{' '}
               <Link to="/register" className="font-semibold text-indigo-600 hover:text-indigo-700 hover:underline">
                 Create Employee Account
               </Link>

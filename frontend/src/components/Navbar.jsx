@@ -55,7 +55,7 @@ const Navbar = () => {
               </div>
               <div>
                 <span className="font-bold text-slate-900 text-lg tracking-tight block leading-tight">
-                  ABC Company
+                  Prachay Securities
                 </span>
                 <span className="text-[11px] font-medium text-slate-500 uppercase tracking-wider block">
                   Expense Voucher Portal
