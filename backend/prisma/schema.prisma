@@ -1,0 +1,54 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               Int       @id @default(autoincrement())
+  name             String
+  email            String    @unique
+  password         String
+  role             String    @default("EMPLOYEE") // EMPLOYEE, DIRECTOR, ACCOUNTS
+  employeeId       String?
+  department       String?
+  signatureUrl     String?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  vouchers         Voucher[] @relation("CreatedVouchers")
+  approvedVouchers Voucher[] @relation("ApprovedVouchers")
+}
+
+model Voucher {
+  id                Int       @id @default(autoincrement())
+  voucherNumber     String    @unique
+  voucherDate       DateTime  @default(now())
+  expenseDate       DateTime
+  department        String
+  expenseTitle      String
+  expenseCategory   String
+  expenseDescription String?
+  amount            Float
+  
+  employeeName      String
+  employeeId        String?
+  employeeSignature String?
+  
+  userId            Int
+  user              User      @relation("CreatedVouchers", fields: [userId], references: [id], onDelete: Cascade)
+  
+  status            String    @default("DRAFT") // DRAFT, SUBMITTED, APPROVED, REJECTED
+  
+  directorSignature String?
+  approvalDate      DateTime?
+  approvedById      Int?
+  approvedBy        User?     @relation("ApprovedVouchers", fields: [approvedById], references: [id])
+  rejectionReason   String?
+  
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
