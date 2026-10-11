@@ -36,8 +36,8 @@ const register = async (req, res) => {
       signatureUrl = saveBase64Image(signatureData, 'user-sig');
     }
 
-    // Role validation: EMPLOYEE, DIRECTOR, ACCOUNTS
-    const validRoles = ['EMPLOYEE', 'DIRECTOR', 'ACCOUNTS'];
+    // Role validation: Public registration only allows EMPLOYEE or ACCOUNTS (DIRECTOR is restricted)
+    const validRoles = ['EMPLOYEE', 'ACCOUNTS'];
     const assignedRole = validRoles.includes(role?.toUpperCase()) ? role.toUpperCase() : 'EMPLOYEE';
 
     const user = await prisma.user.create({

@@ -62,33 +62,26 @@ const Login = () => {
             </p>
           </div>
 
-          {/* Quick Demo Logins Bar */}
+          {/* Quick Demo Logins Bar (Director hidden for security) */}
           <div className="mb-6 p-3 bg-slate-50 border border-slate-200 rounded-2xl">
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-2 flex items-center gap-1">
               <UserCheck size={13} />
               <span>1-Click Demo Accounts:</span>
             </span>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               <button
                 type="button"
                 onClick={() => setDemoCredentials('employee@abc.com', 'Password123!')}
                 className="py-1.5 px-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 rounded-xl text-xs font-semibold transition-colors text-center"
               >
-                Employee
-              </button>
-              <button
-                type="button"
-                onClick={() => setDemoCredentials('director@abc.com', 'Password123!')}
-                className="py-1.5 px-2 bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-800 rounded-xl text-xs font-semibold transition-colors text-center"
-              >
-                Director
+                Employee (Demo)
               </button>
               <button
                 type="button"
                 onClick={() => setDemoCredentials('accounts@abc.com', 'Password123!')}
                 className="py-1.5 px-2 bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-800 rounded-xl text-xs font-semibold transition-colors text-center"
               >
-                Accounts
+                Accounts (Demo)
               </button>
             </div>
           </div>
