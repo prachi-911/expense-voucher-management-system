@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Receipt, Lock, Mail, AlertCircle, ArrowRight, CheckCircle2, UserCheck, X } from 'lucide-react';
+import { 
+  Receipt, 
+  Lock, 
+  Mail, 
+  AlertCircle, 
+  ArrowRight, 
+  Eye, 
+  EyeOff, 
+  ShieldCheck 
+} from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -19,108 +29,66 @@ const Login = () => {
     setPassword('');
   }, []);
 
-  const clearForm = () => {
-    setEmail('');
-    setPassword('');
-    setError('');
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
     try {
-      const res = await login(email, password);
+      const res = await login(email.trim(), password);
       if (res.success) {
         navigate('/dashboard');
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      setError(err.response?.data?.message || 'Invalid credentials. Please verify your email and password.');
     } finally {
       setLoading(false);
     }
   };
 
-  // Quick Demo Account Selector for evaluator convenience
-  const setDemoCredentials = (demoEmail, demoPassword) => {
-    setEmail(demoEmail);
-    setPassword(demoPassword);
-    setError('');
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-900 bg-radial-gradient flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       
+      {/* Brand Header */}
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-600 text-white shadow-xl shadow-indigo-500/20 mb-4">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-600 text-white shadow-xl shadow-indigo-600/30 mb-4 ring-4 ring-indigo-500/20">
           <Receipt size={32} />
         </div>
-        <h2 className="text-3xl font-extrabold text-white tracking-tight">
+        <h1 className="text-3xl font-extrabold text-white tracking-tight">
           ABC Company
-        </h2>
-        <p className="mt-1 text-sm text-indigo-200">
+        </h1>
+        <p className="mt-1.5 text-sm text-slate-400 font-medium">
           Expense Voucher Management System
         </p>
       </div>
 
+      {/* Main Authentication Card */}
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4 sm:px-0">
         <div className="bg-white py-8 px-6 sm:px-10 shadow-2xl rounded-3xl border border-slate-100">
           
           <div className="mb-6">
-            <h3 className="text-xl font-bold text-slate-900">Sign in to your account</h3>
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+              Sign in to your account
+            </h2>
             <p className="text-xs text-slate-500 mt-1">
-              Select a quick demo persona below or enter your credentials.
+              Please enter your authorized corporate email and password.
             </p>
           </div>
 
-          {/* Quick Demo Logins Bar (Director hidden for security) */}
-          <div className="mb-6 p-3 bg-slate-50 border border-slate-200 rounded-2xl">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-2 flex items-center gap-1">
-              <UserCheck size={13} />
-              <span>1-Click Demo Accounts:</span>
-            </span>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={() => setDemoCredentials('employee@abc.com', 'Password123!')}
-                className="py-1.5 px-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 rounded-xl text-xs font-semibold transition-colors text-center"
-              >
-                Employee (Demo)
-              </button>
-              <button
-                type="button"
-                onClick={() => setDemoCredentials('accounts@abc.com', 'Password123!')}
-                className="py-1.5 px-2 bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-800 rounded-xl text-xs font-semibold transition-colors text-center"
-              >
-                Accounts (Demo)
-              </button>
-            </div>
-          </div>
-
           {error && (
-            <div className="mb-5 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl flex items-center gap-2">
-              <AlertCircle size={16} className="shrink-0" />
+            <div className="mb-5 p-3.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl flex items-center gap-2.5">
+              <AlertCircle size={16} className="shrink-0 text-rose-600" />
               <span>{error}</span>
             </div>
           )}
 
           <form onSubmit={handleLogin} autoComplete="off" className="space-y-4">
+            
+            {/* Email Field */}
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-semibold text-slate-700">
-                  Work Email Address
-                </label>
-                {(email || password) && (
-                  <button
-                    type="button"
-                    onClick={clearForm}
-                    className="text-[11px] font-semibold text-rose-600 hover:text-rose-700 hover:underline"
-                  >
-                    Clear Fields
-                  </button>
-                )}
-              </div>
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                Corporate Email Address <span className="text-rose-500">*</span>
+              </label>
               <div className="relative">
                 <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
@@ -129,54 +97,44 @@ const Login = () => {
                   autoComplete="off"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@abc.com"
-                  className="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition-all placeholder:text-slate-400"
+                  placeholder="name@company.com"
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition-all placeholder:text-slate-400 font-medium"
                 />
-                {email && (
-                  <button
-                    type="button"
-                    onClick={() => setEmail('')}
-                    title="Clear Email"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600"
-                  >
-                    <X size={15} />
-                  </button>
-                )}
               </div>
             </div>
 
+            {/* Password Field */}
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
-                Password
+              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                Password <span className="text-rose-500">*</span>
               </label>
               <div className="relative">
                 <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   required
                   autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition-all placeholder:text-slate-400"
+                  placeholder="••••••••••••"
+                  className="w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:bg-white outline-none transition-all placeholder:text-slate-400 font-medium"
                 />
-                {password && (
-                  <button
-                    type="button"
-                    onClick={() => setPassword('')}
-                    title="Clear Password"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-600"
-                  >
-                    <X size={15} />
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors p-1"
+                  tabIndex={-1}
+                >
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
               </div>
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full mt-2 py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-sm shadow-md shadow-indigo-600/20 hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full mt-2 py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl text-sm shadow-md shadow-indigo-600/20 hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -189,16 +147,24 @@ const Login = () => {
             </button>
           </form>
 
+          {/* Registration link */}
           <div className="mt-6 pt-5 border-t border-slate-100 text-center">
             <p className="text-xs text-slate-500">
-              Don't have an account yet?{' '}
-              <Link to="/register" className="font-semibold text-indigo-600 hover:text-indigo-700">
-                Register as Employee
+              New employee joining ABC Company?{' '}
+              <Link to="/register" className="font-semibold text-indigo-600 hover:text-indigo-700 hover:underline">
+                Create Employee Account
               </Link>
             </p>
           </div>
 
         </div>
+
+        {/* Corporate Security Footer */}
+        <div className="mt-6 text-center flex items-center justify-center gap-1.5 text-xs text-slate-500">
+          <ShieldCheck size={14} className="text-emerald-500" />
+          <span>Internal Corporate System • Authorized Personnel Only</span>
+        </div>
+
       </div>
 
     </div>

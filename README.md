@@ -233,16 +233,16 @@ Visit **`http://localhost:5173`** in your browser!
 
 ---
 
-## 🔑 Default Demo Credentials
+## 🔑 Seeded System Accounts
 
-For convenience during evaluation, the Login page includes **1-Click Demo Buttons** to instantly log in as any role:
+The database seeder provisions initial accounts for each organizational role:
 
-| Role | Email | Password | Pre-seeded State |
+| Role | Email | Password | Pre-seeded State & Access |
 |---|---|---|---|
 | **Employee (John Doe)** | `employee@abc.com` | `Password123!` | Has 1 Draft, 1 Submitted, 1 Approved voucher |
 | **Employee (Jane Smith)** | `jane@abc.com` | `Password123!` | Has 1 Submitted, 1 Approved, 1 Rejected voucher |
-| **Director (Admin)** | `director@abc.com` | `Password123!` | Pending approvals awaiting review |
-| **Accounts Team** | `accounts@abc.com` | `Password123!` | Approved vouchers ready for reimbursement |
+| **Director (Sarah Jenkins)** | `director@abc.com` | `Password123!` | Administrative approval queue across all departments |
+| **Accounts Team (Michael Scott)** | `accounts@abc.com` | `Password123!` | Organization-wide reimbursement monitoring & receipt printing |
 
 ---
 
