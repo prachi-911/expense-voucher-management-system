@@ -133,10 +133,10 @@ async function main() {
     }
   });
 
-  console.log('Created Prachay Securities Users:');
-  console.log(' - Employee: employee@prachay.com / employee@abc.com');
-  console.log(' - Director: director@prachay.com / director@abc.com');
-  console.log(' - Accounts: accounts@prachay.com / accounts@abc.com');
+  console.log('Created ABC Company Users:');
+  console.log(' - Employee: employee@abc.com');
+  console.log(' - Director: director@abc.com');
+  console.log(' - Accounts: accounts@abc.com');
 
   // 2. Seed Vouchers
   // Voucher 1: DRAFT (John Doe)
@@ -167,7 +167,7 @@ async function main() {
       department: 'Engineering',
       expenseTitle: 'Flight Tickets for Tech Summit Bangalore',
       expenseCategory: 'Travel',
-      expenseDescription: 'Round-trip flight booking to represent Prachay Securities at TechSparks Bangalore summit.',
+      expenseDescription: 'Round-trip flight booking to represent ABC Company at TechSparks Bangalore summit.',
       amount: 18250.50,
       employeeName: employee1.name,
       employeeId: employee1.employeeId,
